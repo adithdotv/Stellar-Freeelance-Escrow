@@ -14,7 +14,6 @@ const MAX_RATING: u32 = 5;
 #[contracterror]
 #[derive(Copy, Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
 #[repr(u32)]
-
 pub enum Error {
     AlreadyInitialized = 1,
     NotInitialized = 2,
