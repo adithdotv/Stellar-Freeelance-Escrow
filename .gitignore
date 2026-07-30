@@ -5,6 +5,9 @@ target
 .soroban
 .stellar
 
+# Soroban test snapshots — regenerated each run, bytes vary by build method
+test_snapshots
+
 # Node
 node_modules
 dist

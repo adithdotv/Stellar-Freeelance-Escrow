@@ -1,0 +1,49 @@
+name: Contracts
+
+on:
+  push:
+    paths:
+      - "contracts/**"
+      - ".github/workflows/contracts.yml"
+  pull_request:
+    paths:
+      - "contracts/**"
+      - ".github/workflows/contracts.yml"
+
+defaults:
+  run:
+    working-directory: contracts
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup component add rustfmt clippy
+          rustup target add wasm32v1-none
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            contracts/target
+          key: cargo-${{ runner.os }}-${{ hashFiles('contracts/Cargo.lock') }}
+
+      - name: Format
+        run: cargo fmt --all -- --check
+
+      # The factory's tests deploy the compiled job wasm, so build it before testing.
+      - name: Build wasm
+        run: cargo build --release --target wasm32v1-none --locked
+
+      - name: Clippy
+        run: cargo clippy --all-targets --locked -- -D warnings
+
+      - name: Test
+        run: cargo test --locked
