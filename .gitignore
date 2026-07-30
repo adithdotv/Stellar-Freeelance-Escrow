@@ -1,0 +1,19 @@
+# Rust
+target
+
+# Stellar local settings
+.soroban
+.stellar
+
+# Node
+node_modules
+dist
+dist-ssr
+*.local
+*.log
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
