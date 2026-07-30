@@ -96,6 +96,10 @@ Freighter, xBull, Albedo, Lobstr, and the others all work through one connect bu
 | `npm test` | Run the Vitest suite |
 | `npm run lint` | Lint with oxlint |
 
+To deploy, point a Vercel (or Netlify) project at the **`app/`** directory as its root.
+[`app/vercel.json`](app/vercel.json) sets the build command, output directory, and the
+SPA rewrite.
+
 ## Working with the contracts
 
 ```bash
