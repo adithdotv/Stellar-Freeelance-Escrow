@@ -13,7 +13,8 @@ itself deployed.
 
 | | |
 |---|---|
-| Demo | _deploy `app/` to Vercel and add the URL here_ |
+| Demo | https://stellar-freeelance-escrow-psi.vercel.app/ |
+| Demo video | _add the 1–2 minute walkthrough link here_ |
 | Network | Stellar Testnet |
 | EscrowFactory | [`CBQBRQGV…S7VW`](https://stellar.expert/explorer/testnet/contract/CBQBRQGVPSNINIL3P3GG2HRE6QPBY52A5CSCJ73ACSMW3IBWQ6OPS7VW) |
 | Reputation | [`CBYTQSZN…Y2MG`](https://stellar.expert/explorer/testnet/contract/CBYTQSZNGI6CKC7XLYAIQRODWI47OVRKKOOLG7GZXOBWIHM7TPMBY2MG) |
@@ -129,6 +130,17 @@ The standout is
 [`approving_a_milestone_updates_reputation_across_all_three_contracts`](contracts/contracts/escrow-factory/src/test.rs)
 — the factory deploys a real job, the job pays and reports to the real reputation
 contract, and reputation accepts the write only because the factory vouches for the job.
+
+## Screenshots
+
+| | |
+|---|---|
+| Mobile-responsive UI | [`mobile-responsive.png`](docs/screenshots/mobile-responsive.png) |
+| CI pipeline passing | [`ci-pipeline.png`](docs/screenshots/ci-pipeline.png) |
+| Contract tests (31 passing) | [`contract-tests.png`](docs/screenshots/contract-tests.png) |
+| Frontend tests (25 passing) | [`frontend-tests.png`](docs/screenshots/frontend-tests.png) |
+
+![Mobile-responsive UI](docs/screenshots/mobile-responsive.png)
 
 ## CI/CD
 
