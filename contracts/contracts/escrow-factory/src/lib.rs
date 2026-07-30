@@ -69,6 +69,11 @@ impl EscrowFactory {
         amounts: Vec<i128>,
         deadline: u64,
     ) -> Result<Address, Error> {
+        // The client funds the escrow, so they must authorize at the top of the call —
+        // otherwise the funding inside the job constructor is a sub-invocation with no
+        // root authorization to anchor it.
+        client.require_auth();
+
         let reputation = Self::get_reputation(env.clone())?;
         let wasm: BytesN<32> = env
             .storage()
