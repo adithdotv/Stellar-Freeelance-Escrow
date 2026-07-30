@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { CreateJobForm } from "./components/CreateJobForm";
 import { JobCard } from "./components/JobCard";
+import { ReputationCard } from "./components/ReputationCard";
 import { WalletButton } from "./components/WalletButton";
 import { useJobs } from "./hooks/useJobs";
 import { toAppError } from "./lib/errors";
@@ -12,7 +14,7 @@ export default function App() {
   const [address, setAddress] = useState<string | null>(null);
   const [walletError, setWalletError] = useState<string | null>(null);
 
-  const { jobs, isLoading, error } = useJobs();
+  const { jobs, isLoading, error, reload } = useJobs();
 
   async function handleConnect() {
     try {
@@ -45,6 +47,13 @@ export default function App() {
         />
       </header>
 
+      {address && (
+        <div className="layout">
+          <CreateJobForm address={address} onCreated={reload} />
+          <ReputationCard address={address} title="Your reputation" />
+        </div>
+      )}
+
       <section>
         <div className="section-heading">
           <h2>Jobs</h2>
@@ -53,13 +62,16 @@ export default function App() {
 
         {isLoading && <p className="hint">Loading jobs…</p>}
         {error && <p className="status status-error">{error}</p>}
-        {!isLoading && !error && jobs.length === 0 && (
-          <p className="hint">No jobs yet.</p>
-        )}
+        {!isLoading && !error && jobs.length === 0 && <p className="hint">No jobs yet.</p>}
 
         <div className="job-grid">
           {jobs.map((job) => (
-            <JobCard key={job.address} job={job} connectedAddress={address} />
+            <JobCard
+              key={job.address}
+              job={job}
+              connectedAddress={address}
+              onChanged={reload}
+            />
           ))}
         </div>
       </section>

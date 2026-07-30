@@ -158,11 +158,17 @@
 
 .milestone {
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
+  flex-direction: column;
+  gap: 0.5rem;
   padding: 0.5rem 0.65rem;
   background: var(--surface-2);
   border-radius: 8px;
+}
+
+.milestone-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
 
 .milestone-index {
@@ -203,6 +209,142 @@
   color: var(--muted);
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field > span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+input,
+select {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.milestone-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.milestone-input input {
+  flex: 1;
+}
+
+.button-small {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  border-radius: 7px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.milestone-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.approve-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.rating-select {
+  padding: 0.35rem 0.5rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.stats dt {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.stats dd {
+  margin: 0.25rem 0 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.status-success {
+  color: var(--success);
+  background: rgba(62, 207, 142, 0.1);
+  border: 1px solid rgba(62, 207, 142, 0.3);
+}
+
+.status-progress {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-kind {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  margin-right: 0.5rem;
+  opacity: 0.8;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 720px) {
   .page {
     padding: 1.25rem 1rem 3rem;
@@ -215,6 +357,10 @@
 
   .wallet {
     justify-content: flex-start;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
   }
 
   .job-grid {

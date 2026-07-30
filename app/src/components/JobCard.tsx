@@ -1,10 +1,12 @@
 import type { Milestone, MilestoneState } from "../contracts/job";
 import type { JobSummary } from "../hooks/useJobs";
 import { describeTimeLeft, formatXlm, shortenAddress } from "../lib/format";
+import { MilestoneActions } from "./MilestoneActions";
 
 interface JobCardProps {
   job: JobSummary;
   connectedAddress: string | null;
+  onChanged: () => void;
 }
 
 const STATE_LABELS: Record<MilestoneState["tag"], string> = {
@@ -27,7 +29,7 @@ function roleLabel(job: JobSummary, address: string | null): string | null {
   return null;
 }
 
-export function JobCard({ job, connectedAddress }: JobCardProps) {
+export function JobCard({ job, connectedAddress, onChanged }: JobCardProps) {
   const role = roleLabel(job, connectedAddress);
 
   return (
@@ -58,11 +60,22 @@ export function JobCard({ job, connectedAddress }: JobCardProps) {
       <ul className="milestones">
         {job.milestones.map((milestone, index) => (
           <li key={index} className="milestone">
-            <span className="milestone-index">#{index + 1}</span>
-            <span className="milestone-amount">{formatXlm(milestone.amount)} XLM</span>
-            <span className={`badge badge-${milestone.state.tag.toLowerCase()}`}>
-              {STATE_LABELS[milestone.state.tag]}
-            </span>
+            <div className="milestone-row">
+              <span className="milestone-index">#{index + 1}</span>
+              <span className="milestone-amount">{formatXlm(milestone.amount)} XLM</span>
+              <span className={`badge badge-${milestone.state.tag.toLowerCase()}`}>
+                {STATE_LABELS[milestone.state.tag]}
+              </span>
+            </div>
+            {connectedAddress && (
+              <MilestoneActions
+                job={job}
+                index={index}
+                milestone={milestone}
+                address={connectedAddress}
+                onChanged={onChanged}
+              />
+            )}
           </li>
         ))}
       </ul>
