@@ -14,7 +14,7 @@ itself deployed.
 | | |
 |---|---|
 | Demo | https://stellar-freeelance-escrow-psi.vercel.app/ |
-| Demo video | _add the 1–2 minute walkthrough link here_ |
+| Demo video | https://youtu.be/s_PLZV_dQts |
 | Network | Stellar Testnet |
 | EscrowFactory | [`CBQBRQGV…S7VW`](https://stellar.expert/explorer/testnet/contract/CBQBRQGVPSNINIL3P3GG2HRE6QPBY52A5CSCJ73ACSMW3IBWQ6OPS7VW) |
 | Reputation | [`CBYTQSZN…Y2MG`](https://stellar.expert/explorer/testnet/contract/CBYTQSZNGI6CKC7XLYAIQRODWI47OVRKKOOLG7GZXOBWIHM7TPMBY2MG) |
