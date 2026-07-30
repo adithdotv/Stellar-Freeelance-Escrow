@@ -8,4 +8,12 @@ export default defineConfig({
   define: {
     global: "globalThis",
   },
+  // Vitest reads this block at runtime; its types ship in a separate module that
+  // conflicts with rolldown-vite's plugin types, so it is declared untyped here.
+  // @ts-expect-error - `test` is a Vitest extension of the Vite config.
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./src/test/setup.ts",
+  },
 });
